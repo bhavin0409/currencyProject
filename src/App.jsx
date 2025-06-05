@@ -5,7 +5,7 @@ import useCurrencyInfo from './hooks/useCurrencyInfo'
 const App = () => {
   const [amount, setAmount] = useState(0)
   const [form, setForm] = useState("usd")
-  const [to, setTo] = useState("inr")
+  const [to, setTo] = useState("INR")
   const [convertedAmount, setConvertedAmount] = useState(0)
 
   const currencyInfo = useCurrencyInfo(form)
