@@ -1,12 +1,69 @@
-# React + Vite
+# Currency Converter React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple currency converter web application built with **React** and **Vite**. It allows users to convert an amount from one currency to another using real-time exchange rates fetched from the [ExchangeRate-API](https://www.exchangerate-api.com/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Live Currency Conversion:**  
+  Converts between any two currencies using up-to-date rates from an external API.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Swap Functionality:**  
+  Instantly swap the "from" and "to" currencies and their values.
+
+- **Responsive UI:**  
+  Built with [Tailwind CSS](https://tailwindcss.com/) for a modern, responsive design.
+
+
+
+## Project Structure
+
+```
+src/
+  App.jsx              # Main application component
+  main.jsx             # Entry point
+  index.css            # Tailwind and global styles
+  components/
+    InputBox.jsx       # Reusable input/select component for currency and amount
+    index.js           # Component exports
+  hooks/
+    useCurrencyInfo.js # Custom hook for fetching currency rates
+assets/
+  react.svg            # Example asset
+```
+
+---
+
+## How It Works
+
+- The main component (`App.jsx`) manages the state for the amount, selected currencies, and conversion result.
+- The custom hook [`useCurrencyInfo`](src/hooks/useCurrencyInfo.js) fetches the latest conversion rates for the selected "from" currency.
+- The [`InputBox`](src/components/InputBox.jsx) component is used for both the "from" and "to" currency selectors.
+- When the user enters an amount and selects currencies, clicking "Convert" calculates the result using the fetched rates.
+- The "Swap" button exchanges the "from" and "to" currencies and their values.
+
+
+
+## About the Custom Hook: `useCurrencyInfo`
+
+The custom hook [`useCurrencyInfo`](src/hooks/useCurrencyInfo.js) is used to fetch the latest currency conversion rates from the ExchangeRate-API based on the selected "from" currency.
+
+**How it works:**
+- Takes the base currency as an argument.
+- Fetches real-time conversion rates from the API whenever the base currency changes.
+- Returns an object with all available currency rates, which is used to populate the dropdowns and perform conversions.
+
+**Why use a custom hook?**
+- Keeps API logic separate from UI components.
+- Makes the code reusable and easier to maintain.
+- Automatically updates rates when the selected currency changes.
+
+
+## Customization
+
+- **API Key:**  
+  The API key for ExchangeRate-API is hardcoded in [`useCurrencyInfo.js`](src/hooks/useCurrencyInfo.js).  
+  Replace it with your own key for production use.
+
+
